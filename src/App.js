@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 
 import Post from './Post';
 import Header from './Header';
+import { ThemeProvider } from './ThemeContext';
 
 function App() {
+
     const [posts, setPosts] = useState([
         { id: Math.random(), title: 'Title#01', subtitle: 'Subtitle#01', likes: 50, read: false},
         { id: Math.random(), title: 'Title#02', subtitle: 'Subtitle#02', likes: 10, read: true},
@@ -29,7 +31,7 @@ function App() {
     }
 
     return (
-        <>
+        <ThemeProvider>
             <Header>
                 <h2>Posts da semana</h2>
                 <button onClick={handleRefresh}>Atualizar</button>
@@ -40,12 +42,12 @@ function App() {
             {posts.map(post => (
                 <Post
                     key={post.id}
-                    onRemove={handleRemovePost}
                     post={post}
+                    onRemove={handleRemovePost}
                 />
             ))}
 
-        </>
+        </ThemeProvider>
     )
 }
 
