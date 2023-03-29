@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Button from "../Button";
 import { ThemeContext } from "../../context/ThemeContext";
 
-import { Title } from "./style";
+import Title from "../Title";
 
 function Header(props) {
     const { onToogleTheme } = useContext(ThemeContext);

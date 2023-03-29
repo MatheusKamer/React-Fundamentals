@@ -4,12 +4,14 @@ import Post from '../Post';
 import Header from '../Header';
 import { ThemeProvider } from '../../context/ThemeContext';
 
+import {Title} from './styles';
+
 function App() {
 
     const [posts, setPosts] = useState([
-        { id: Math.random(), title: 'Title#01', subtitle: 'Subtitle#01', likes: 50, read: false},
-        { id: Math.random(), title: 'Title#02', subtitle: 'Subtitle#02', likes: 10, read: true},
-        { id: Math.random(), title: 'Title#03', subtitle: 'Subtitle#03', likes: 20, read: false},
+        { id: Math.random(), title: 'Title#01', subtitle: 'Subtitle#01', likes: 50, read: false, removed: false},
+        { id: Math.random(), title: 'Title#02', subtitle: 'Subtitle#02', likes: 10, read: true, removed: false},
+        { id: Math.random(), title: 'Title#03', subtitle: 'Subtitle#03', likes: 20, read: false, removed: false},
     ])
 
     function handleRefresh() {
@@ -25,15 +27,18 @@ function App() {
     }
 
     function handleRemovePost(postId) {
-        setPosts((prevState) => (
-            prevState.filter(post => post.id !== postId)
+        setPosts((prevState) => prevState.map(
+            post => (post.id === postId
+                ? { ...post, removed: true}
+                : post
+            )
         ))
     }
 
     return (
         <ThemeProvider>
             <Header>
-                <h2>Posts da semana</h2>
+                <Title as="h2">Posts da semana</Title>
                 <button onClick={handleRefresh}>Atualizar</button>
             </Header>
 
