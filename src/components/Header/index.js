@@ -1,15 +1,17 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
-import Button from "./Button";
-import { ThemeContext } from "./ThemeContext";
+import Button from "../Button";
+import { ThemeContext } from "../../context/ThemeContext";
+
+import { Title } from "./style";
 
 function Header(props) {
     const { onToogleTheme } = useContext(ThemeContext);
 
     return (
         <>
-            <h1>{props.title}</h1>
+            <Title>{props.title}</Title>
             <Button onClick={onToogleTheme}>
                 Mudar tema
             </Button>
